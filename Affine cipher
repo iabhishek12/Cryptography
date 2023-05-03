@@ -1,0 +1,65 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Function to encrypt the message
+string encryptMessage(string msg, int a, int b) 
+{ 
+    string cipher = ""; 
+  
+    // traverse message 
+    for (int i=0; i<msg.length(); i++) 
+    { 
+        // apply transformation to each character 
+        // Encrypt uppercase letters 
+        if (isupper(msg[i])) 
+            cipher += char(int(msg[i]+a-65)%26 +65); 
+  
+        // Encrypt lowercase letters 
+        else
+            cipher += char(int(msg[i]+a-97)%26 +97); 
+    } 
+  
+    // Return the resulting cipher 
+    return cipher; 
+} 
+
+// Function to decrypt the message 
+string decryptMessage(string cipher, int a, int b) 
+{ 
+    string msg = ""; 
+  
+    // traverse cipher 
+    for (int i=0; i<cipher.length(); i++) 
+    { 
+        // apply transformation to each character 
+        // Decrypt uppercase letters 
+        if (isupper(cipher[i])) 
+            msg += char(int(cipher[i]-a-65)%26 +65); 
+  
+        // Decrypt lowercase letters 
+        else
+            msg += char(int(cipher[i]-a-97)%26 +97); 
+    } 
+  
+    // Return the resulting message 
+    return msg; 
+} 
+
+int main() 
+{ 
+    string msg;
+    int a, b;
+    
+    cout << "Enter the message : ";
+    cin >> msg;
+    cout << "Enter the key values a and b : ";
+    cin >> a >> b;
+    
+    string cipher = encryptMessage(msg, a, b); 
+    cout << "Encrypted message : " << cipher << "\n";
+    
+    cout << "Decrypted message : " << decryptMessage(cipher, a, b); 
+    return 0; 
+}

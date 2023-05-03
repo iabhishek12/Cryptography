@@ -1,0 +1,24 @@
+#include<bits/stdc++.h> 
+using namespace std; 
+
+// method to generate the 
+// XOR encryption 
+string generateHash(string s) 
+{ 
+	int len = s.length(); 
+	char xor_val = s[0]; 
+	for (int i = 1; i < len; i++) 
+		xor_val = xor_val ^ s[i]; 
+	stringstream ss; 
+	ss << hex << int(xor_val); 
+	string result(ss.str()); 
+	return result; 
+} 
+
+// Driver code 
+int main() 
+{ 
+	string s = "GeeksforGeeks"; 
+	cout << generateHash(s); 
+	return 0; 
+}
